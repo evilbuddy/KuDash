@@ -1,0 +1,150 @@
+body
+{
+    background-color: #292D3E;
+    margin: none;
+    font-family: "Arial";
+}
+
+input[type="text"], input[type="password"]
+{
+    background-color: #31364A;
+    border: none;
+    color: #FFFFFF;
+    padding: 5px;
+    margin-top: 5px;
+    display: block;
+    width: 50%;
+    max-width: 30rem;
+    border-radius: 10px;
+}
+
+.form-button
+{
+    display: block;
+    background-color: #7E57C2;
+    color: #FFFFFF;
+    padding: 5px;
+    margin-top: 5px;
+    display: block;
+    width: 50%;
+    max-width: 30rem;
+    border-radius: 10px;
+}
+
+.form-button:hover
+{
+    cursor: pointer;
+    background-color: #3E2669;
+}
+
+.menu
+{
+    background-color: #7E57C2;
+}
+
+.groups
+{
+    width: camc(100% - 10px);
+    height: fit-content;
+    background-color: #00000080;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.group-btn
+{
+    display: inline-block;
+    margin: 0 5px 0 0;
+    width: fit-content;
+
+    background-color: #7E57C2;
+    color: #FFFFFF;
+    border-radius: 10px;
+    padding: 5px;
+    user-select: none;
+}
+
+.group-btn:hover
+{
+    background-color: #3E2669;
+}
+
+.group-btn a
+{
+    cursor: pointer;
+}
+
+.group-btn img
+{
+    cursor: pointer;
+    vertical-align: text-bottom;
+    margin-left: 5px;
+    height: 16px;
+    opacity: 50%;
+}
+
+.group-btn img:hover
+{
+    opacity: 100%;
+}
+
+
+.btn-active
+{
+    background-color: #4B2E7F;
+}
+
+.group-div
+{
+    width: 0;
+    height: 0;
+    max-height: 100%;
+    visibility: hidden;
+}
+
+.div-active
+{
+    width: 100%;
+    height: fit-content;
+    visibility: visible;
+}
+
+.group-div div
+{
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 20px 0 0;
+    width: 73px;
+    height: 115px;
+    text-align: center;
+    background-color: #7E57C2;
+    border-radius: 10px;
+}
+
+.group-div div a
+{
+    width: fit-content;
+    height: fit-content;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.group-div div a img
+{
+    width: 64px;
+    height: 64px;
+}
+
+.group-div div .remove
+{
+    display: inline-block ;
+    width: 16px;
+    height: auto;
+    opacity: 50%;
+}
+
+.group-div div .remove:hover
+{
+    cursor: pointer;
+    opacity: 100%;
+}
