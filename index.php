@@ -48,10 +48,10 @@ if($token != $dbtoken) {
 
     if($dbarr["isAdmin"] == 1)
     {
-        echo "<div class=\"group-btn\" style=\"float: right\" onclick=\"window.open('register.php', '_self')\">new user</div>";
+        echo "<div class=\"group-btn\" style=\"float: right\"><a onclick=\"window.open('register.php', '_self')\">new user</a></div>";
     }
     ?>
-        <div class="group-btn" style="float: right" onclick="logout();">logout</div>
+        <div class="group-btn" style="float: right" onclick="logout();"><a onclick="logout();">logout</a></div>
     </div>
 
     <?php

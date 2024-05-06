@@ -44,11 +44,12 @@ input[type="text"], input[type="password"]
 
 .groups
 {
-    width: camc(100% - 10px);
+    width: calc(100% - 10px);
     height: fit-content;
-    background-color: #00000080;
     padding: 5px;
     border-radius: 10px;
+    border: solid 1px #7E57C2;
+    margin-bottom: 5px;
 }
 
 .group-btn
