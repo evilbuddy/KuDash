@@ -34,25 +34,22 @@ if($token != $dbtoken) {
     <div class="groups">
         <div class="group-btn" onclick="window.open('addgroup.php', '_self')"><img src="add.png"></div>
 
-    <?php
-    $uname = $dbarr["name"];
-    $req = $db->prepare("SELECT * FROM groups WHERE id LIKE ?");
-    $req->bindValue(1, $uname . "%", SQLITE3_TEXT);
-    $groups = $req->execute();
-    while($group = $groups->fetchArray()) {
-        $groupname = str_replace($uname . "_", "", $group["id"]);
-        echo "<div id=\"btn-" . $groupname . "\" class=\"group-btn\">";
-        echo "<a onclick=\"opengroup('" . $groupname . "')\">" . $group["display"] . "</a>";
-        echo "<img class=\"remove\" src=\"remove.png\" onclick=\"window.open('api/removegroup.php?id=" . $group["id"] . "', '_self')\">";
-        echo "</div>";
-    }
+        <?php
+        $uname = $dbarr["name"];
+        $req = $db->prepare("SELECT * FROM groups WHERE id LIKE ?");
+        $req->bindValue(1, $uname . "%", SQLITE3_TEXT);
+        $groups = $req->execute();
+        while($group = $groups->fetchArray()) {
+            $groupname = str_replace($uname . "_", "", $group["id"]);
+            echo "<div id=\"btn-" . $groupname . "\" class=\"group-btn\">";
+            echo "<a onclick=\"opengroup('" . $groupname . "')\">" . $group["display"] . "</a>";
+            echo "<img class=\"remove\" src=\"remove.png\" onclick=\"window.open('api/removegroup.php?id=" . $group["id"] . "', '_self')\">";
+            echo "</div>";
+        }
+        ?>
 
-    if($dbarr["isAdmin"] == 1)
-    {
-        echo "<div class=\"group-btn\" style=\"float: right\"><a onclick=\"window.open('register.php', '_self')\">new user</a></div>";
-    }
-    ?>
         <div class="group-btn" style="float: right" onclick="logout();"><a onclick="logout();">logout</a></div>
+        <div class="group-btn" style="float: right"><a onclick="window.open('account.php', '_self')">account</a></div>
     </div>
 
     <div class="group-div div-active">
