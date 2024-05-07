@@ -33,6 +33,7 @@ if($token != $dbtoken) {
 <body>
     <div class="groups">
         <div class="group-btn" onclick="window.open('addgroup.php', '_self')"><img src="add.png"></div>
+
     <?php
     $uname = $dbarr["name"];
     $req = $db->prepare("SELECT * FROM groups WHERE id LIKE ?");
@@ -52,6 +53,10 @@ if($token != $dbtoken) {
     }
     ?>
         <div class="group-btn" style="float: right" onclick="logout();"><a onclick="logout();">logout</a></div>
+    </div>
+
+    <div class="group-div div-active">
+        <center><h1 style="color:#fff">Please open or create a tab.</h1></center>
     </div>
 
     <?php
@@ -76,6 +81,18 @@ if($token != $dbtoken) {
         }
 
         echo "</div>";
+    }
+
+    $req = $db->prepare("SELECT COUNT(*) as count FROM groups WHERE id LIKE ?");
+    $req->bindValue(1, $uname . "%", SQLITE3_TEXT);
+    $countArr = $req->execute();
+    $countRow = $countArr->fetchArray();
+    $count = $countRow["count"];
+
+    if($count == 1) {
+        $group = $groups->fetchArray();
+        $groupname = str_replace($uname . "_", "", $group["id"]);
+        echo "<script>opengroup('" . $groupname . "')</script>";
     }
     ?>
 </body>

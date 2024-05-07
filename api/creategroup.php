@@ -19,6 +19,19 @@ if($token != $dbtoken) {
 $name = $_GET["name"];
 $id = $dbarr["name"] . "_" . strtolower(str_replace(" ", "_", $name));
 
+$req = $db->prepare("SELECT COUNT(*) as count FROM groups WHERE id=?");
+$req->bindValue(1, $id, SQLITE3_TEXT);
+$countArr = $req->execute();
+$countRow = $countArr->fetchArray();
+$count = $countRow["count"];
+
+if($count != 0)
+{
+    echo "<h1>The group " . $name . " already exists !</h1>";
+    echo "<a href=\"../index.php\">home</a>";
+    die();
+}
+
 $req = $db->prepare("INSERT INTO groups (id, display) VALUES(?, ?)");
 $req->bindValue(1, $id, SQLITE3_TEXT);
 $req->bindValue(2, $name, SQLITE3_TEXT);
