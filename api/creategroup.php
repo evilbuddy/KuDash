@@ -19,6 +19,8 @@ if($token != $dbtoken) {
 $name = $_GET["name"];
 $id = $dbarr["name"] . "_" . strtolower(str_replace(" ", "_", $name));
 
+$public = $_GET["public"];
+
 $req = $db->prepare("SELECT COUNT(*) as count FROM groups WHERE id=?");
 $req->bindValue(1, $id, SQLITE3_TEXT);
 $countArr = $req->execute();
@@ -32,9 +34,10 @@ if($count != 0)
     die();
 }
 
-$req = $db->prepare("INSERT INTO groups (id, display) VALUES(?, ?)");
+$req = $db->prepare("INSERT INTO groups (id, display, public) VALUES(?, ?, ?)");
 $req->bindValue(1, $id, SQLITE3_TEXT);
 $req->bindValue(2, $name, SQLITE3_TEXT);
+$req->bindValue(3, $public, SQLITE3_TEXT);
 $newgroup = $req->execute();
 
 die(header("Location: ../index.php"));
