@@ -34,9 +34,7 @@ if(isset($token)) {
         <div class="group-btn" onclick="window.open('addgroup.php', '_self')"><img src="add.png"></div>
 
         <?php
-        $req = $db->prepare("SELECT * FROM groups WHERE public=1");
-        $req->bindValue(1, $uname . "%", SQLITE3_TEXT);
-        $groups = $req->execute();
+        $groups = $db->query("SELECT * FROM groups WHERE public=1");
         while($group = $groups->fetchArray()) {
             if(isset($token) && $dbarr["name"] == substr($group["id"], 0, strlen($dbarr["name"])))
             {
@@ -76,9 +74,7 @@ if(isset($token)) {
     </div>
 
     <?php
-    $req = $db->prepare("SELECT * FROM groups WHERE public=1");
-    $req->bindValue(1, $uname . "%", SQLITE3_TEXT);
-    $groups = $req->execute();
+    $groups = $db->query("SELECT * FROM groups WHERE public=1");
     while($group = $groups->fetchArray()) {
         if(isset($token) && $dbarr["name"] == substr($group["id"], 0, strlen($dbarr["name"])))
         {
@@ -132,16 +128,14 @@ if(isset($token)) {
         }
     }
 
-    $req = $db->prepare("SELECT COUNT(*) as count FROM groups WHERE id LIKE ?");
+    $req = $db->prepare("SELECT COUNT(*) as count FROM groups WHERE id LIKE ? AND public=0");
     $req->bindValue(1, $uname . "%", SQLITE3_TEXT);
     $countArr = $req->execute();
     $countRow = $countArr->fetchArray();
     $count = $countRow["count"];
 
-    $req = $db->prepare("SELECT COUNT(*) as count FROM groups WHERE public = 1");
-    $req->bindValue(1, $uname . "%", SQLITE3_TEXT);
-    $countArr = $req->execute();
-    $countRow = $countArr->fetchArray();
+    $req = $db->query("SELECT COUNT(*) as count FROM groups WHERE public=1");
+    $countRow = $req->fetchArray();
     $count = $count + $countRow["count"];
 
     if($count == 1) {
