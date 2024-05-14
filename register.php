@@ -18,7 +18,7 @@ if($token != $dbtoken) {
 }
 
 if($admin != 1) {
-    die(header("Location: ../index.php"));
+    die(header("Location: index.php"));
 }
 ?>
 

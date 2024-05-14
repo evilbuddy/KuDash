@@ -9,8 +9,9 @@ $db = new SQLite3("../data.db");
 $req = $db->prepare("SELECT * FROM users WHERE token=?");
 $req->bindValue(1, $token, SQLITE3_TEXT);
 $user = $req->execute();
-$dbtoken = $user->fetchArray()["token"];
-$admin = $user->fetchArray()["isAdmin"];
+$dbarr = $user->fetchArray();
+$dbtoken = $dbarr["token"];
+$admin = $dbarr["isAdmin"];
 
 if($token != $dbtoken) {
     die(header("Location: ../login.php"));

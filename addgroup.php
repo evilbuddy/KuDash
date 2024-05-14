@@ -24,13 +24,20 @@ if($token != $dbtoken) {
         function addlink()
         {
             let name = document.getElementById("name").value;
+            let public = 0;
 
-            window.open("api/creategroup.php?name=" + name, "_self");
+            if(document.getElementById("public").checked == true)
+            {
+                public = 1;
+            }
+
+            window.open("api/creategroup.php?name=" + name + "&public=" + public, "_self");
         }
     </script>
 </head>
 
 <body>
-    <center><input id="name" type="text" placeholder="name"></input>
+    <center><input id="name" type="text" placeholder="name">
+    <input id="public" type="checkbox"><label for="public">Public</label>
     <a class="form-button" onclick="addlink()">add group</a></center>
 </body>
